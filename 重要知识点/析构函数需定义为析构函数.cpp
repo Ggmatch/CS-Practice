@@ -13,7 +13,7 @@ class Stu : public Person
 {
 public:
     Stu() { cout << "Stu constructor" << endl; };
-    ~Stu() { cout << "Stu deconstructor" << endl; };
+    virtual ~Stu() { cout << "Stu deconstructor" << endl; };
 };
 
 int main()
