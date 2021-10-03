@@ -1,0 +1,57 @@
+# [点击查看题目](https://www.nowcoder.com/practice/75e878df47f24fdc9dc3e400ec6058ca?tpId=117)
+
+## C题解
+```c
+/**
+ * struct ListNode {
+ *	int val;
+ *	struct ListNode *next;
+ * };
+ */
+
+/**
+ * 
+ * @param pHead ListNode类 
+ * @return ListNode类
+ */
+struct ListNode* ReverseList(struct ListNode* pHead ) {
+    // write code here
+    struct ListNode* pre = pHead;
+    struct ListNode* cur = NULL;
+    while(pHead != NULL){
+        struct ListNode* tmp = pHead->next;
+        pre->next = cur;
+        cur = pre;
+        pre = pHead = tmp;
+    }
+    
+    return cur;
+}
+```
+
+## JAVA题解
+```java
+/*
+public class ListNode {
+    int val;
+    ListNode next = null;
+
+    ListNode(int val) {
+        this.val = val;
+    }
+}*/
+public class Solution {
+    public ListNode ReverseList(ListNode head) {
+        ListNode pre = head;
+        ListNode cur = null;
+        while(head != null){
+            ListNode temp = head.next;
+            pre.next = cur;
+            cur = pre;
+            head = pre = temp;
+        }
+        
+        return cur;
+    }
+}
+```

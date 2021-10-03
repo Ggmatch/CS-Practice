@@ -1,0 +1,103 @@
+# [点击查看题目](https://www.nowcoder.com/practice/2baf799ea0594abd974d37139de27896?tpId=117)
+
+## C题解
+
+```c
+/**
+ * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+ * 将给定数组排序
+ * @param arr int整型一维数组 待排序的数组
+ * @param arrLen int arr数组长度
+ * @return int整型一维数组
+ * @return int* returnSize 返回数组行数
+ */
+int Partition(int* arr, int left, int right){
+    int base = arr[left];
+    while(left<right){
+        while((left<right) && (arr[right]>=base)){
+            right--;
+        }
+        if(left<right){
+            arr[left] = arr[right];
+            left++;
+        }
+        while((left<right) && (arr[left]<=base)){
+            left++;
+        }
+        if(left<right){
+            arr[right] = arr[left];
+            right--;
+        }
+    }
+    arr[left] = base;
+    return left;
+}
+
+void MyQSort(int* arr, int left, int right){
+    if(left>=right){
+        return;
+    }
+    int idx = Partition(arr, left, right);
+    MyQSort(arr, left, idx-1);
+    MyQSort(arr, idx+1, right);
+}
+
+int* MySort(int* arr, int arrLen, int* returnSize ) {
+    // write code here
+    MyQSort(arr, 0, arrLen-1);
+    *returnSize = arrLen;
+    return arr;
+}
+```
+
+## JAVA题解
+
+```java
+import java.util.*;
+
+
+public class Solution {
+    /**
+     * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+     * 将给定数组排序
+     * @param arr int整型一维数组 待排序的数组
+     * @return int整型一维数组
+     */
+    private int Partition(int[] arr, int left, int right){
+        int base = arr[left];
+        while(left<right){
+            while((left<right) && (arr[right]>=base)){
+                right--;
+            }
+            if(left<right){
+                arr[left] = arr[right];
+                left++;
+            }
+            while((left<right) && (arr[left]<=base)){
+                left++;
+            }
+            if(left<right){
+                arr[right] = arr[left];
+                right--;
+            }
+        }
+        arr[left] = base;
+        return left;
+    }
+    
+    private void MyQSort(int[] arr, int left, int right){
+        if(left>=right){
+            return;
+        }
+        int idx = Partition(arr, left, right);
+        MyQSort(arr, left, idx-1);
+        MyQSort(arr, idx+1, right);
+    }
+    
+    public int[] MySort (int[] arr) {
+        // write code here
+        MyQSort(arr, 0, arr.length-1);
+        return arr;
+    }
+}
+```
